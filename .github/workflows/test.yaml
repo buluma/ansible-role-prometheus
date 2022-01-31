@@ -15,10 +15,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: "ubuntu-20.04"
+  # Test the image builds and works correctly.
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
     steps:
-      steps:
       - uses: actions/checkout@v2
+
       - name: "Test Role"
         run: ansible-playbook test.yml
