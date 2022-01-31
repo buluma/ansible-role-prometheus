@@ -4,5 +4,3 @@
 .tox
 .cache
 .DS_Store
-.tests
-./test_playbook.yml
