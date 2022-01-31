@@ -26,7 +26,7 @@ jobs:
       - name: test 
         run: ansible-galaxy install william-yeh.prometheus 
 
-      - name vrag
+      - name: vrag
         run: vagrant up
 
       - name: "Test Role 1"
