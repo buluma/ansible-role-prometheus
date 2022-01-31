@@ -1,7 +1,7 @@
 ---
 # file: simple-playbook.yml
 
-- hosts: localhost
+- hosts: all
   become: True
   roles:
     - buluma.ansible_role_prometheus
