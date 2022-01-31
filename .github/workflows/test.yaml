@@ -1,0 +1,16 @@
+---
+#
+# Ansible managed
+#
+
+name: "Test Role"
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: "ubuntu-20.04"
+    steps:
+      - name: "Test Role"
+        run: ansible-playbook ./test.yml
