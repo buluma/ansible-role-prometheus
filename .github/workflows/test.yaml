@@ -13,4 +13,4 @@ jobs:
     runs-on: "ubuntu-20.04"
     steps:
       - name: "Test Role"
-        run: ansible-playbook ./test.yml
+        run: ansible-playbook test.yml
