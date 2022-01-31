@@ -23,8 +23,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      # - name: test 
-      #   run: ansible-galaxy install william-yeh.prometheus 
+      - name: test 
+        run: ansible-galaxy install buluma.ansible_role_prometheus
 
       # - name: vrag
       #   run: vagrant up
