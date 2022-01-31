@@ -1,7 +1,7 @@
 ---
 # file: simple-playbook.yml
 
-- hosts: all
+- hosts: localhost
   become: True
   roles:
     - william-yeh.prometheus
