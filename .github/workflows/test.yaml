@@ -23,5 +23,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: "Test Role"
+      - name: "Test Role 1"
         run: ansible-playbook --connection=local -i inventory.yml test.yml
+
+      - name: "Test Role 2"
+        run: ansible-playbook --connection=local -i inventory.yml test_playbook.yml
