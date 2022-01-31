@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Install and configure Prometheus.
+  homepage: https://buluma.co.ke/
+  topics: system, monitoring, prometheus, ansible, molecule, tox, playbook, hacktoberfest
