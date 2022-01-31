@@ -5,4 +5,4 @@
   gather_facts: yes
 
   roles:
-    - role: ansible-role-prometheus
+    - role: buluma.prometheus

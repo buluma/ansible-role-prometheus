@@ -4,7 +4,7 @@ Install and configure moodle on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/buluma/ansible-role-prometheus/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-prometheus/actions)|[![gitlab](https://gitlab.com/buluma/ansible-role-prometheus/badges/master/pipeline.svg)](https://gitlab.com/buluma/ansible-role-prometheus)|[![quality](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/buluma/prometheus)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/buluma/prometheus)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-prometheus.svg)](https://github.com/buluma/ansible-role-prometheus/releases/)|
+|[![github](https://github.com/buluma/ansible-role-prometheus/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-prometheus/actions)|[![gitlab](https://gitlab.com/buluma/ansible-role-prometheus/badges/master/pipeline.svg)](https://gitlab.com/buluma/ansible-role-prometheus)|[![quality](https://img.shields.io/ansible/quality/57842)](https://galaxy.ansible.com/buluma/prometheus)|[![downloads](https://img.shields.io/ansible/role/d/57842)](https://galaxy.ansible.com/buluma/prometheus)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-prometheus.svg)](https://github.com/buluma/ansible-role-prometheus/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
