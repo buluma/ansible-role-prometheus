@@ -27,4 +27,4 @@ jobs:
         run: ansible-galaxy install william-yeh.prometheus
 
       - name: "Test Role 1"
-        run: ansible-playbook --connection=local -i inventory.yml test.yml
+        run: ansible-playbook --connection=local -i inventory.yml test_playbook.yml
