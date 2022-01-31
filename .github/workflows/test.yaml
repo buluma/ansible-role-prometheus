@@ -6,7 +6,13 @@
 name: "Test Role"
 
 on:
+  pull_request:
   push:
+    paths:
+      - '.github/workflows/test.yaml'
+  schedule:
+    - cron: '20 4,7 * * *'
+  workflow_dispatch:
 
 jobs:
   build:
