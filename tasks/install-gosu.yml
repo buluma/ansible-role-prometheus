@@ -17,8 +17,6 @@
     gosu_exe_url: "https://github.com/tianon/gosu/releases/download/{{ gosu_version }}/gosu-i386"
   when: ansible_userspace_bits == "32"
 
-
-
 - name: download gosu executable
   get_url: url="{{ gosu_exe_url }}"  dest="/usr/local/bin/gosu"
 

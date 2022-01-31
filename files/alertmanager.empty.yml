@@ -1,3 +1,4 @@
+---
 global:
 
 route:
@@ -12,4 +13,4 @@ route:
 receivers:
   - name: 'default-pager'
     pagerduty_configs:
-    - service_key: <team-X-key>
+        - service_key: <team-X-key>
