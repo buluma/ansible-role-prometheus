@@ -17,7 +17,8 @@
       changed_when: py_interpreter.rc|int != 0
       ignore_errors: true
 
-    - debug: var=py_interpreter
+    - name: set interpreter
+      debug: var=py_interpreter # TODO check if this causes an error
 
     - name: choose python3 for Ansible on the managed host
       set_fact:
