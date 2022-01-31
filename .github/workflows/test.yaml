@@ -23,8 +23,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      # - name: install role
-        # run: ansible-galaxy install william-yeh.prometheus
+      - name: test 
+        run: ansible-galaxy install -p roles williamyeh.prometheus && vagrant up
 
       - name: "Test Role 1"
         run: ansible-playbook --connection=local -i inventory.yml test.yml
