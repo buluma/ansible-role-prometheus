@@ -4,7 +4,7 @@
 - hosts: localhost
   become: True
   roles:
-    - william-yeh.prometheus
+    - buluma.ansible_role_prometheus
 
   vars:
     prometheus_components: [ "prometheus", "alertmanager" ]
