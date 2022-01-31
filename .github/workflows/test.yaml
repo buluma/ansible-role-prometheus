@@ -23,11 +23,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: test 
-        run: ansible-galaxy install william-yeh.prometheus 
+      # - name: test 
+      #   run: ansible-galaxy install william-yeh.prometheus 
 
-      - name: vrag
-        run: vagrant up
+      # - name: vrag
+      #   run: vagrant up
 
       - name: "Test Role 1"
         run: ansible-playbook --connection=local -i inventory.yml test.yml
