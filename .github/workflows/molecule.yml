@@ -35,20 +35,7 @@ jobs:
         config:
           - image: "amazonlinux"
             tag: "latest"
-          - image: "debian"
-            tag: "bullseye"
-          - image: "debian"
-            tag: "bookworm"
-          - image: "fedora"
-            tag: "34"
-          - image: "fedora"
-            tag: "latest"
-          - image: "fedora"
-            tag: "rawhide"
-          - image: "ubuntu"
-            tag: "latest"
-          - image: "ubuntu"
-            tag: "bionic"
+
     steps:
       - name: checkout
         uses: actions/checkout@v2
