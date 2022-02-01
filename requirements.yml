@@ -1,4 +1,4 @@
 ---
 roles:
-  - name: buluma.bootstrap
+  - name: buluma.prometheus
 collections:
