@@ -9,3 +9,15 @@ exclude_paths:
   - ./molecule/default/collections.yml
   - ./.tox
   - ./.cache
+
+skip_list:
+  - "204"
+  - "risky-file-permissions"
+  - "no-relative-paths"
+  - "git-latest"
+  - "unnamed-task"
+  - "no-handler"
+
+# warn_list:  # or 'skip_list' to silence them completely
+#  - no-handler  # Tasks that run when changed should likely be handlers
+#  - unnamed-task  # All tasks should be named
