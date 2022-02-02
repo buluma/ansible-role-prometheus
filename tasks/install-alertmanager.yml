@@ -16,7 +16,7 @@
       set_fact:
         prometheus_alertmanager_untar_path: "{{ prometheus_install_path }}"
         prometheus_alertmanager_daemon_dir: "{{ prometheus_install_path }}/{{ prometheus_alertmanager_signature }}"
-        prometheus_alertmanager_tarball_url: "https://github.com/prometheus/alertmanager/releases/download/v{{ prometheus_alertmanager_version }}/{{ prometheus_alertmanager_signature }}.tar.gz"
+        prometheus_alertmanager_tarball_url: "https://github.com/prometheus/alertmanager/releases/download/v{{ prometheus_alertmanager_version }}/{{ prometheus_alertmanager_signature }}.tar.gz"  
 
     - name: download and uncompress alertmanager tarball
       unarchive:
@@ -40,7 +40,7 @@
 
     - name: install gcc for compiling go-sqlite3
       package: name=gcc state=present
-      # action: "{{ ansible_pkg_mgr }} name=gcc state=present"
+      #action: "{{ ansible_pkg_mgr }} name=gcc state=present"
 
     - name: install static libs for compiling source
       yum: name=glibc-static state=present
@@ -58,7 +58,7 @@
 
     - name: build alertmanager source code
       command: make format build
-      # command: make
+      #command: make
       args:
         chdir: "{{ prometheus_alertmanager_src_path }}"
         creates: alertmanager
@@ -108,7 +108,7 @@
   service: name=alertmanager enabled=yes
   when: prometheus_use_service|bool
 
-# - name: set INIT status and start
+#- name: set INIT status and start
 #  service: name=alertmanager state=started
 #  when: prometheus_use_service|bool
 
