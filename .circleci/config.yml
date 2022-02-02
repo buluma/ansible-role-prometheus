@@ -9,10 +9,10 @@ jobs:
     machine: true
     #docker:
     #  - image: docker:18.06.1-ce
-      #- image: docker:18.06.1-ce-git
+      # - image: docker:18.06.1-ce-git
     steps:
       - checkout
-      #- setup_remote_docker:
+      # - setup_remote_docker:
       #    docker_layer_caching: true
       - run:
           name: build application docker image
@@ -53,12 +53,12 @@ jobs:
   build_master_bionic:
     working_directory: ~/app
     machine: true
-    #docker:
+    # docker:
     #  - image: docker:18.06.1-ce
-      #- image: docker:18.06.1-ce-git
+      # - image: docker:18.06.1-ce-git
     steps:
       - checkout
-      #- setup_remote_docker:
+      # - setup_remote_docker:
       #    docker_layer_caching: true
       - run:
           name: build application docker image
@@ -75,12 +75,12 @@ jobs:
   build_master_xenial:
     working_directory: ~/app
     machine: true
-    #docker:
+    # docker:
     #  - image: docker:18.06.1-ce
-      #- image: docker:18.06.1-ce-git
+      # - image: docker:18.06.1-ce-git
     steps:
       - checkout
-      #- setup_remote_docker:
+      # - setup_remote_docker:
       #    docker_layer_caching: true
       - run:
           name: build application docker image
@@ -97,12 +97,12 @@ jobs:
   build_master_trusty:
     working_directory: ~/app
     machine: true
-    #docker:
+    # docker:
     #  - image: docker:18.06.1-ce
       #- image: docker:18.06.1-ce-git
     steps:
       - checkout
-      #- setup_remote_docker:
+      # - setup_remote_docker:
       #    docker_layer_caching: true
       - run:
           name: build application docker image
@@ -119,12 +119,12 @@ jobs:
   build_master_jessie:
     working_directory: ~/app
     machine: true
-    #docker:
+    # docker:
     #  - image: docker:18.06.1-ce
-      #- image: docker:18.06.1-ce-git
+      # - image: docker:18.06.1-ce-git
     steps:
       - checkout
-      #- setup_remote_docker:
+      # - setup_remote_docker:
       #    docker_layer_caching: true
       - run:
           name: build application docker image
@@ -141,12 +141,12 @@ jobs:
   build_master_centos7:
     working_directory: ~/app
     machine: true
-    #docker:
+    # docker:
     #  - image: docker:18.06.1-ce
-      #- image: docker:18.06.1-ce-git
+      # - image: docker:18.06.1-ce-git
     steps:
       - checkout
-      #- setup_remote_docker:
+      # - setup_remote_docker:
       #    docker_layer_caching: true
       - run:
           name: build application docker image
@@ -170,6 +170,6 @@ workflows:
       - build_master_trusty
       - build_master_jessie
       - build_master_centos7
-      #- test:
+      # - test:
       #    requires:
       #      - build

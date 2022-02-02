@@ -30,7 +30,8 @@ jobs:
       #   run: vagrant up
 
       - name: "Test Role 1"
-        run: ansible-playbook --connection=local -i inventory.yml test_playbook.yml
+        # run: ansible-playbook --connection=local -i inventory.yml test.yml
+        run: ansible-playbook test.yml
 
       # - name: test online role
       # run: ansible-galaxy install buluma.ansible_role_prometheus
