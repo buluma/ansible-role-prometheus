@@ -26,12 +26,8 @@ jobs:
       - name: test role install
         run: ansible-galaxy install buluma.prometheus
 
-      # - name: vrag
-      #   run: vagrant up
-
       - name: "Test Role 1"
-        # run: ansible-playbook --connection=local -i inventory.yml test.yml
-        run: ansible-playbook test.yml
+        run: ansible-playbook --connection=local -i inventory.yml test.yml
 
       # - name: test online role
       # run: ansible-galaxy install buluma.ansible_role_prometheus
