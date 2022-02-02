@@ -35,11 +35,11 @@ Vagrant.configure(2) do |config|
         node.vm.provision "shell", inline: <<-SHELL
             cd /vagrant
             docker build  -f test/Dockerfile-ubuntu14.04  -t prometheus_trusty   .
-            docker build  -f test/Dockerfile-debian8      -t prometheus_jessie   .
+            # docker build  -f test/Dockerfile-debian8      -t prometheus_jessie   .
             docker build  -f test/Dockerfile-debian7      -t prometheus_wheezy   .
             docker build  -f test/Dockerfile-centos7      -t prometheus_centos7  .
             docker build  -f test/Dockerfile-ubuntu14.04-git  -t prometheus_trusty_git   .
-            docker build  -f test/Dockerfile-debian8-git      -t prometheus_jessie_git   .
+            # docker build  -f test/Dockerfile-debian8-git      -t prometheus_jessie_git   .
             docker build  -f test/Dockerfile-centos7-git      -t prometheus_centos7_git  .
         SHELL
     end

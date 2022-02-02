@@ -7,8 +7,8 @@
 # user-configurable defaults
 #
 
-prometheus_user:   prometheus
-prometheus_group:  prometheus
+prometheus_user: prometheus
+prometheus_group: prometheus
 
 prometheus_version:                 2.5.0
 prometheus_node_exporter_version:   0.16.0
@@ -46,6 +46,6 @@ prometheus_rebuild:           false
 #
 
 
-#---- the following vars are handled in tasks/set-role-variables.yml ------
+# ---- the following vars are handled in tasks/set-role-variables.yml ------
 
-#prometheus_use_systemd: False  # use "systemd" to start/restart service?
+# prometheus_use_systemd: False  # use "systemd" to start/restart service?

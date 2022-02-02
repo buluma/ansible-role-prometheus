@@ -9,11 +9,10 @@ rules:
     max-spaces-inside: 1
     level: error
   line-length: disable
-  truthy: disable
-  colons: disable
-  comments: disable
-  comments-indentation: disable
+  truthy: false
   indentation: disable
+  comments-indentation: disable
+  colons: disable
 
 ignore: |
   .tox/
