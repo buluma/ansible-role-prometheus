@@ -2,9 +2,9 @@
 prometheus for Ansible Galaxy
 ============
 
-[![Circle CI](https://circleci.com/gh/buluma/ansible-prometheus.svg?style=shield)](https://circleci.com/gh/William-Yeh/ansible-prometheus) [![Build Status](https://travis-ci.org/William-Yeh/ansible-prometheus.svg?branch=master)](https://travis-ci.org/William-Yeh/ansible-prometheus)
-
-
+|GitHub|GitLab|Quality|Downloads|Version|
+|------|------|-------|---------|-------|
+|[![github](https://github.com/buluma/ansible-role-prometheus/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-prometheus/actions)|[![gitlab](https://gitlab.com/buluma/ansible-role-prometheus/badges/main/pipeline.svg)](https://gitlab.com/buluma/ansible-role-prometheus)|[![quality](https://img.shields.io/ansible/quality/57842)](https://galaxy.ansible.com/buluma/prometheus)|[![downloads](https://img.shields.io/ansible/role/d/57842)](https://galaxy.ansible.com/buluma/anaconda)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-prometheus.svg)](https://github.com/buluma/ansible-role-prometheus/releases/)|
 
 ## Summary
 
@@ -262,7 +262,7 @@ Alertmanager:
 
 ### Step 1: add role
 
-Add role name `william-yeh.prometheus` to your playbook file.
+Add role name `buluma.prometheus` to your playbook file.
 
 
 ### Step 2: add variables
@@ -278,7 +278,7 @@ Simple example:
 - hosts: all
   become: True
   roles:
-    - william-yeh.prometheus
+    - buluma.prometheus
 
   vars:
     prometheus_components: [ "prometheus", "alertmanager" ]
@@ -299,7 +299,7 @@ More practical example:
 - hosts: all
   become: True
   roles:
-    - william-yeh.prometheus
+    - buluma.prometheus
 
   vars:
     prometheus_components:
