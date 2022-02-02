@@ -2,7 +2,7 @@
 # prometheus/meta/main.yml
 
 galaxy_info:
-    author: williamyeh
+    author: buluma
     description: Install and configure Prometheus
     license: MIT
 
@@ -13,7 +13,7 @@ galaxy_info:
           versions:
               - trusty
               - xenial
-              - bionic 
+              - bionic
         - name: Debian
           versions:
               - jessie

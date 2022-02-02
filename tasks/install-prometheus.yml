@@ -62,7 +62,6 @@
   when: prometheus_version == "git"
 
 
-
 - name: set permissions, owner and group
   file:
     path: "{{ prometheus_install_path }}"
@@ -126,4 +125,3 @@
   when: prometheus_conf_main is defined
   notify:
     - reload prometheus
-

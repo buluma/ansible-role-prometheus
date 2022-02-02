@@ -23,6 +23,6 @@ galaxy:
   script:
     - ansible-galaxy role info ${CI_PROJECT_NAMESPACE}.prometheus
 
-test2:
+test-playbook:
   script:
     - ansible-playbook --connection=local -i inventory.yml test.yml

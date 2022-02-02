@@ -20,7 +20,6 @@
   when: prometheus_alertmanager_version == "git" or prometheus_node_exporter_version == "git" or prometheus_version == "git"
 
 
-
 - name: create Prometheus group
   group: name={{ prometheus_group }}  state=present
 

@@ -1,3 +1,4 @@
+---
 - hosts: all
   become: True
   gather_facts: False
@@ -15,16 +16,16 @@
 
   vars:
 
-    #prometheus_components: [ "prometheus" ]
-    #prometheus_components: [ "node_exporter" ]
-    #prometheus_components: [ "alertmanager" ]
+    # prometheus_components: [ "prometheus" ]
+    # prometheus_components: [ "node_exporter" ]
+    # prometheus_components: [ "alertmanager" ]
     prometheus_components: [ "prometheus", "node_exporter", "alertmanager" ]
-    #prometheus_version: git
-    #prometheus_node_exporter_version: git
-    #prometheus_alertmanager_version: git
+    # prometheus_version: git
+    # prometheus_node_exporter_version: git
+    # prometheus_alertmanager_version: git
 
 
-    #prometheus_rule_files:
+    # prometheus_rule_files:
     #  this_is_rule_1_InstanceDown:
     #    src:  test/basic.rules
     #    dest: basic.rules
@@ -32,7 +33,7 @@
 
     prometheus_alertmanager_hostport: "localhost:9093"
 
-    #prometheus_alertmanager_conf: test/alertmanager.yml.j2
+    # prometheus_alertmanager_conf: test/alertmanager.yml.j2
 
   post_tasks:
     - name: copy file_sd

@@ -1,3 +1,4 @@
+---
 #
 # TODO: workspace or cache for build/test workflows
 #       https://circleci.com/docs/2.0/jobs-steps/
@@ -7,7 +8,7 @@ jobs:
   build_stable:
     working_directory: ~/app
     machine: true
-    #docker:
+    # docker:
     #  - image: docker:18.06.1-ce
       # - image: docker:18.06.1-ce-git
     steps:
@@ -99,7 +100,7 @@ jobs:
     machine: true
     # docker:
     #  - image: docker:18.06.1-ce
-      #- image: docker:18.06.1-ce-git
+      # - image: docker:18.06.1-ce-git
     steps:
       - checkout
       # - setup_remote_docker:

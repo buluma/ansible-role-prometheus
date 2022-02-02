@@ -23,11 +23,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: test role install
-        run: ansible-galaxy install buluma.prometheus
+      # - name: test role install
+      #  run: ansible-galaxy install buluma.prometheus
 
-      - name: "Test Role 1"
+      - name: Run Playbook
         run: ansible-playbook --connection=local -i inventory.yml test.yml
-
-      # - name: test online role
-      # run: ansible-galaxy install buluma.ansible_role_prometheus
