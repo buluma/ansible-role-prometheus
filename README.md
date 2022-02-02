@@ -4,7 +4,7 @@ Install and configure moodle on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/buluma/ansible-role-prometheus/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-prometheus/actions)|[![gitlab](https://gitlab.com/buluma/ansible-role-prometheus/badges/master/pipeline.svg)](https://gitlab.com/buluma/ansible-role-prometheus)|[![quality](https://img.shields.io/ansible/quality/57842)](https://galaxy.ansible.com/buluma/prometheus)|[![downloads](https://img.shields.io/ansible/role/d/57842)](https://galaxy.ansible.com/buluma/prometheus)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-prometheus.svg)](https://github.com/buluma/ansible-role-prometheus/releases/)|
+|[![github](https://github.com/buluma/ansible-role-prometheus/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-prometheus/actions)|[![pipeline status](https://gitlab.com/buluma/ansible-role-prometheus/badges/main/pipeline.svg)](https://gitlab.com/buluma/ansible-role-prometheus/-/commits/main)|[![quality](https://img.shields.io/ansible/quality/57842)](https://galaxy.ansible.com/buluma/prometheus)|[![downloads](https://img.shields.io/ansible/role/d/57842)](https://galaxy.ansible.com/buluma/prometheus)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-prometheus.svg)](https://github.com/buluma/ansible-role-prometheus/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -100,13 +100,14 @@ The following roles are used to prepare a system. You can prepare your system in
 
 | Requirement | GitHub | GitLab |
 |-------------|--------|--------|
-|[buluma.bootstrap](https://galaxy.ansible.com/buluma/bootstrap)|[![Build Status GitHub](https://github.com/buluma/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-bootstrap/actions)|[![Build Status GitLab ](https://gitlab.com/buluma/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/buluma/ansible-role-bootstrap)|
+|[buluma.bootstrap](https://galaxy.ansible.com/buluma/bootstrap)|[![Build Status GitHub](https://github.com/buluma/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-bootstrap/actions)|[![Build Status GitLab ](https://gitlab.com/buluma/ansible-role-bootstrap/badges/main/pipeline.svg)](https://gitlab.com/buluma/ansible-role-bootstrap)|
 
 ## [Context](#context)
 
 This role is a part of many compatible roles. Have a look at [the documentation of these roles](https://buluma.nl/) for further information.
 
 Here is an overview of related roles:
+
 ![dependencies](https://raw.githubusercontent.com/buluma/ansible-role-prometheus/png/requirements.png "Dependencies")
 
 ## [Compatibility](#compatibility)
