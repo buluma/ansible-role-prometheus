@@ -3,7 +3,7 @@
 # Ansible managed
 #
 
-name: "Test Role"
+name: Ansible Molecule
 
 on:
   pull_request:
