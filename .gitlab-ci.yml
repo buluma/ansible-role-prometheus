@@ -25,4 +25,4 @@ galaxy:
 
 test2:
   script:
-    - ansible-playbook test.yml
+    - ansible-playbook --connection=local -i inventory.yml test.yml
