@@ -7,7 +7,6 @@
     state: restarted
 
 - name: reload prometheus
-  become: true
-  ansible.builtin.systemd:
+  ansible.builtin.service:
     name: prometheus
     state: reloaded
