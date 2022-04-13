@@ -3,10 +3,6 @@
   become: True
   gather_facts: False
 
-  pre_tasks:
-    - name: fix for python interpreter for managed host
-      include: tasks/fix-python.yml
-
   tasks:
     - include: 'tasks/main.yml'
   handlers:

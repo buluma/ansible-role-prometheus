@@ -11,9 +11,11 @@ Install and configure Prometheus
 This example is taken from `molecule/default/converge.yml` and is tested on each push, pull request and release.
 ```yaml
 ---
-- hosts: all
+- name: Converge
+  hosts: all
+  any_errors_fatal: true
   roles:
-    - role: buluma.bootstrap
+    - buluma.prometheus
 ```
 
 The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
@@ -270,8 +272,8 @@ This role has been tested on these [container images](https://hub.docker.com/u/b
 
 |container|tags|
 |---------|----|
-|ubuntu|trusty, xenial, bionic|
-|debian|jessie, wheezy|
+|ubuntu|all|
+|debian|all|
 |el|7|
 
 The minimum version of Ansible required is 2.2, tests have been done to:
@@ -290,4 +292,4 @@ MIT
 
 ## [Author Information](#author-information)
 
-[buluma](https://buluma.github.io/)
+[Michael Buluma](https://buluma.github.io/)
