@@ -2,7 +2,9 @@
 # prometheus/meta/main.yml
 
 galaxy_info:
-    author: buluma
+    author: Michael Buluma
+    role_name: prometheus
+    namespace: buluma
     description: Install and configure Prometheus
     license: MIT
 
