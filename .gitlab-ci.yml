@@ -10,7 +10,7 @@ variables:
 
 molecule:
   script:
-    - image=${image} tag=${tag} molecule -v test
+    - image=${image} tag=${tag} molecule test
   retry: 1
   parallel:
     matrix:
@@ -29,7 +29,7 @@ molecule:
 
 testing:
   script:
-    - image=${image} tag=${tag} molecule -v test
+    - image=${image} tag=${tag} molecule test
   rules:
     - if: $CI_COMMIT_REF_NAME == "testing"
   retry: 1
