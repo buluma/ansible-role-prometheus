@@ -11,9 +11,11 @@ Install and configure Prometheus
 This example is taken from `molecule/default/converge.yml` and is tested on each push, pull request and release.
 ```yaml
 ---
-- hosts: all
+- name: Converge
+  hosts: all
+  any_errors_fatal: true
   roles:
-    - role: buluma.bootstrap
+    - buluma.prometheus
 ```
 
 The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
@@ -290,4 +292,4 @@ MIT
 
 ## [Author Information](#author-information)
 
-[buluma](https://buluma.github.io/)
+[Michael Buluma](https://buluma.github.io/)
