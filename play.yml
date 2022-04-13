@@ -1,8 +1,0 @@
----
-- name: Install prometheus and Grafana
-  become: true
-  hosts: all
-  roles:
-    - role: cloudalchemy.node_exporter
-    - role: ansible-role-prometheus
-    - role: buluma.grafana
