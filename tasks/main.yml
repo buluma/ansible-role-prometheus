@@ -24,7 +24,7 @@
   group: name={{ prometheus_group }}  state=present
 
 - name: create Prometheus user
-  user:
+  ansible.builtin.user:
     name: "{{ prometheus_user }}"
     group: "{{ prometheus_group }}"
     createhome: no
@@ -33,7 +33,7 @@
     state: present
 
 - name: mkdir for general cases
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: directory
     owner: "{{ prometheus_user }}"

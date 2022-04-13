@@ -9,12 +9,12 @@
 - block:
 
     - name: set internal variables for convenience
-      set_fact:
+      ansible.builtin.set_fact:
         prometheus_node_exporter_tarball_url: "https://github.com/prometheus/node_exporter/releases/download/v{{ prometheus_node_exporter_version }}/node_exporter-{{ prometheus_node_exporter_version }}.{{ prometheus_platform_suffix }}.tar.gz"
         prometheus_node_exporter_daemon_dir: "{{ prometheus_install_path }}/node_exporter-{{ prometheus_node_exporter_version }}.{{ prometheus_platform_suffix }}"
 
     - name: download and untar node_exporter tarball
-      unarchive:
+      ansible.builtin.unarchive:
         src: "{{ prometheus_node_exporter_tarball_url }}"
         dest: "{{ prometheus_install_path }}"
         copy: no
@@ -25,7 +25,7 @@
 - block:
 
     - name: set internal variables for convenience
-      set_fact:
+      ansible.builtin.set_fact:
         prometheus_node_exporter_git_url: "https://github.com/prometheus/node_exporter.git"
         prometheus_node_exporter_src_path: "{{ prometheus_goroot }}/src/github.com/prometheus/node_exporter"
         prometheus_node_exporter_daemon_dir: "{{ prometheus_install_path }}"
@@ -38,20 +38,20 @@
       file: path={{ prometheus_node_exporter_src_path }}  state=directory
 
     - name: clone the node_exporter project src
-      git:
+      ansible.builtin.git:
         repo: "{{ prometheus_node_exporter_git_url }}"
         dest: "{{ prometheus_node_exporter_src_path }}"
         force: yes
 
     - name: workaround - clone the necessary go packages
-      git:
+      ansible.builtin.git:
         repo: https://github.com/golang/sys.git
         dest: "{{ prometheus_gopath }}/src/golang.org/x/sys"
         depth: 1
         force: yes
 
     - name: workaround - clone the necessary go packages
-      git:
+      ansible.builtin.git:
         repo: https://github.com/golang/net.git
         dest: "{{ prometheus_gopath }}/src/golang.org/x/net"
         depth: 1
@@ -80,7 +80,7 @@
   file: path={{ prometheus_node_exporter_daemon_dir }}/node_exporter owner={{ prometheus_user }} group={{ prometheus_group }} mode="go-w"
 
 - name: mkdir for data
-  file:
+  ansible.builtin.file:
     path: "{{ prometheus_db_path }}"
     state: directory
     owner: "{{ prometheus_user }}"

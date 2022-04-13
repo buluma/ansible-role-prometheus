@@ -20,7 +20,7 @@
     - debug: var=py_interpreter
 
     - name: choose python3 for Ansible on the managed host
-      set_fact:
+      ansible.builtin.set_fact:
         ansible_python_interpreter: /usr/bin/python3
       when: py_interpreter.rc|int != 0
 
@@ -37,6 +37,6 @@
 
 
     - name: Gathering Facts
-      setup:
+      ansible.builtin.setup:
 
 #  when: py_interpreter is not defined

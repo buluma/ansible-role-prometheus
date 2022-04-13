@@ -8,12 +8,12 @@
 
 
 - name: set internal variables for convenience
-  set_fact:
+  ansible.builtin.set_fact:
     gosu_exe_url: "https://github.com/tianon/gosu/releases/download/{{ gosu_version }}/gosu-amd64"
   when: ansible_userspace_bits == "64"
 
 - name: set internal variables for convenience
-  set_fact:
+  ansible.builtin.set_fact:
     gosu_exe_url: "https://github.com/tianon/gosu/releases/download/{{ gosu_version }}/gosu-i386"
   when: ansible_userspace_bits == "32"
 

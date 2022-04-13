@@ -9,17 +9,17 @@
 - block:
 
     - name: set internal variables for convenience, part 1
-      set_fact:
+      ansible.builtin.set_fact:
         prometheus_alertmanager_signature: "alertmanager-{{ prometheus_alertmanager_version }}.{{ prometheus_platform_suffix }}"
 
     - name: set internal variables for convenience, part 2
-      set_fact:
+      ansible.builtin.set_fact:
         prometheus_alertmanager_untar_path: "{{ prometheus_install_path }}"
         prometheus_alertmanager_daemon_dir: "{{ prometheus_install_path }}/{{ prometheus_alertmanager_signature }}"
         prometheus_alertmanager_tarball_url: "https://github.com/prometheus/alertmanager/releases/download/v{{ prometheus_alertmanager_version }}/{{ prometheus_alertmanager_signature }}.tar.gz"
 
     - name: download and uncompress alertmanager tarball
-      unarchive:
+      ansible.builtin.unarchive:
         src: "{{ prometheus_alertmanager_tarball_url }}"
         dest: "{{ prometheus_alertmanager_untar_path }}"
         copy: no
@@ -33,7 +33,7 @@
 - block:
 
     - name: set internal variables for convenience
-      set_fact:
+      ansible.builtin.set_fact:
         prometheus_alertmanager_git_url: "https://github.com/prometheus/alertmanager.git"
         prometheus_alertmanager_src_path: "{{ prometheus_goroot }}/src/github.com/prometheus/alertmanager"
         prometheus_alertmanager_daemon_dir: "{{ prometheus_install_path }}"
@@ -51,7 +51,7 @@
       when: prometheus_rebuild
 
     - name: clone the alertmanager project src
-      git:
+      ansible.builtin.git:
         repo: "{{ prometheus_alertmanager_git_url }}"
         dest: "{{ prometheus_alertmanager_src_path }}"
         force: yes
@@ -74,7 +74,7 @@
         creates: "{{ prometheus_install_path }}/alertmanager"
 
     - name: set permissions, owner and group
-      file:
+      ansible.builtin.file:
         path: "{{ prometheus_install_path }}/alertmanager"
         owner: "{{ prometheus_user }}"
         group: "{{ prometheus_group }}"
@@ -84,7 +84,7 @@
 
 
 - name: mkdir for alertmanager data (silences.json for now)
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: directory
     owner: "{{ prometheus_user }}"
