@@ -1,13 +1,8 @@
 ---
-- hosts: all
-  become: True
-  gather_facts: False
-
-  tasks:
-    - name: Install prometheus and Grafana
-      become: true
-      hosts: prometheus
-      roles:
-        - role: cloudalchemy.node_exporter
-        - role: ansible-role-prometheus
-        - role: buluma.grafana
+- name: Install prometheus and Grafana
+  become: true
+  hosts: all
+  roles:
+    - role: cloudalchemy.node_exporter
+    - role: ansible-role-prometheus
+    - role: buluma.grafana
