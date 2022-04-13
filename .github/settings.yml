@@ -3,6 +3,6 @@
 # Ansible managed
 #
 repository:
-  description: Install and configure moodle on your system.
-  homepage: https://buluma.co.ke/
+  description: Install and configure Prometheus
+  homepage: https://buluma.github.io/
   topics: system, monitoring, prometheus, ansible, molecule, tox, playbook, hacktoberfest
