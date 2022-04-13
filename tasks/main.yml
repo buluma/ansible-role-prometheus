@@ -1,5 +1,5 @@
 ---
-- name: Gather variables for each operating system
+- name: gather variables for each operating system
   include_vars: "{{ item }}"
   with_first_found:
     - "{{ ansible_distribution | lower }}-{{ ansible_distribution_major_version }}.yml"
@@ -29,7 +29,7 @@
 
 - name: ensure prometheus service is started and enabled
   become: true
-  systemd:
+  ansible.builtin.systemd:
     daemon_reload: true
     name: prometheus
     state: started
