@@ -270,8 +270,8 @@ This role has been tested on these [container images](https://hub.docker.com/u/b
 
 |container|tags|
 |---------|----|
-|ubuntu|trusty, xenial, bionic|
-|debian|jessie, wheezy|
+|ubuntu|all|
+|debian|all|
 |el|7|
 
 The minimum version of Ansible required is 2.2, tests have been done to:
