@@ -7,6 +7,8 @@
     state: restarted
 
 - name: reload prometheus
-  ansible.builtin.service:
+  become: true
+  ansible.builtin.systemd:
     name: prometheus
     state: reloaded
+  ignore_errors: yes
