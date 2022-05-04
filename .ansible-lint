@@ -2,6 +2,20 @@
 #
 # Ansible managed
 #
+exclude_list:
   - ./molecule/default/collections.yml
   - ./.tox
   - ./.cache
+
+# skip_list:
+#   - experimental  # all rules tagged as experimental
+#   - fqcn-builtins  # Use FQCN for builtin actions.
+#   - git-latest  # Git checkouts must contain explicit version.
+#   - no-changed-when  # Commands should not change things if nothing needs doing.
+#   - no-handler  # Tasks that run when changed should likely be handlers.
+#   - no-relative-paths  # Doesn't need a relative path in role.
+#   - unnamed-task  # All tasks should be named.
+#   - yaml  # Violations reported by yamllint.
+
+warn_list:  # or 'skip_list' to silence them completely
+  - internal-error  # Unexpected internal error.
