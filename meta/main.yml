@@ -1,28 +1,27 @@
 ---
-# prometheus/meta/main.yml
-
 galaxy_info:
-    author: Michael Buluma
-    role_name: prometheus
-    namespace: buluma
-    description: Install and configure Prometheus
-    license: MIT
+  author: Michael Buluma
+  namespace: buluma
+  role_name: prometheus
+  description: Install and configure Prometheus
+  license: Apache-2.0
+  company: ShadowNet
+  min_ansible_version: "2.10"
 
-    min_ansible_version: 2.2
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+    - name: EL
+      versions:
+        - 7
 
-    platforms:
-        - name: Ubuntu
-          versions:
-              - all
-        - name: Debian
-          versions:
-              - all
-        - name: EL
-          versions:
-              - 7
-    galaxy_tags:
-        - system
-        - monitoring
-        - prometheus
+  galaxy_tags:
+    - system
+    - monitoring
+    - prometheus
 
 dependencies: []

@@ -13,9 +13,11 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
 ---
 - name: Converge
   hosts: all
-  any_errors_fatal: true
+  become: yes
+  gather_facts: yes
+
   roles:
-    - buluma.prometheus
+    - role: buluma.prometheus
 ```
 
 The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
@@ -23,8 +25,11 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
 ---
 - name: Prepare
   hosts: all
-  gather_facts: false
-  tasks: []
+  become: yes
+  gather_facts: no
+
+  roles:
+    - role: buluma.bootstrap
 ```
 
 
@@ -257,10 +262,17 @@ prometheus_alert_rules:
 
 - pip packages listed in [requirements.txt](https://github.com/buluma/ansible-role-prometheus/blob/main/requirements.txt).
 
+## [Status of used roles](#status-of-requirements)
+
+The following roles are used to prepare a system. You can prepare your system in another way.
+
+| Requirement | GitHub | GitLab |
+|-------------|--------|--------|
+|[buluma.bootstrap](https://galaxy.ansible.com/buluma/bootstrap)|[![Build Status GitHub](https://github.com/buluma/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-bootstrap/actions)|[![Build Status GitLab ](https://gitlab.com/buluma/ansible-role-bootstrap/badges/main/pipeline.svg)](https://gitlab.com/buluma/ansible-role-bootstrap)|
 
 ## [Context](#context)
 
-This role is a part of many compatible roles. Have a look at [the documentation of these roles](https://buluma.co.ke/) for further information.
+This role is a part of many compatible roles. Have a look at [the documentation of these roles](https://buluma.github.io/) for further information.
 
 Here is an overview of related roles:
 
@@ -276,7 +288,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/b
 |debian|all|
 |el|7|
 
-The minimum version of Ansible required is 2.2, tests have been done to:
+The minimum version of Ansible required is 2.10, tests have been done to:
 
 - The previous version.
 - The current version.
@@ -286,9 +298,13 @@ The minimum version of Ansible required is 2.2, tests have been done to:
 
 If you find issues, please register them in [GitHub](https://github.com/buluma/ansible-role-prometheus/issues)
 
+## [Changelog](#changelog)
+
+[Role History](https://github.com/buluma/ansible-role-prometheus/blob/master/CHANGELOG.md)
+
 ## [License](#license)
 
-MIT
+Apache-2.0
 
 ## [Author Information](#author-information)
 

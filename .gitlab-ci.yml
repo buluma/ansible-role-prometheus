@@ -9,6 +9,8 @@ variables:
   PY_COLORS: 1
 
 molecule:
+  stage: build
+  allow_failure: true
   script:
     - image=${image} tag=${tag} molecule test
   retry: 1
@@ -28,6 +30,8 @@ molecule:
         tag: "7"
 
 testing:
+  stage: test
+  needs: []
   script:
     - image=${image} tag=${tag} molecule test
   rules:
@@ -49,10 +53,14 @@ testing:
         tag: "7"
 
 galaxy:
+  stage: deploy
+  needs: []
   script:
     - ansible-galaxy role info buluma.prometheus
 
 role_testing:
+  stage: test
+  needs: []
   script:
     - image=${image} tag=${tag} ansible-galaxy install buluma.prometheus
   retry: 1
@@ -70,3 +78,21 @@ role_testing:
         tag: "bookworm"
       - image: "enterpriselinux"
         tag: "7"
+
+release_job:
+  stage: .post
+  needs: [molecule]
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  rules:
+    - if: $CI_COMMIT_TAG
+  script:
+    - echo "Running the release job."
+  release:
+    tag_name: $CI_COMMIT_TAG
+    name: 'Release $CI_COMMIT_TAG'
+    description: 'Release created using the release-cli.'
+  artifacts:
+    name: "$CI_JOB_STAGE-$CI_COMMIT_REF_NAME"
+    paths:
+      - /
+    expire_in: 1 day

@@ -1,6 +1,8 @@
 ---
 - name: Converge
   hosts: all
-  any_errors_fatal: true
+  become: yes
+  gather_facts: yes
+
   roles:
-    - ansible-role-prometheus
+    - role: buluma.prometheus

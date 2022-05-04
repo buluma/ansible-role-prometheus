@@ -11,4 +11,5 @@
   ansible.builtin.systemd:
     name: prometheus
     state: reloaded
-  ignore_errors: yes
+  failed_when: no
+  changed_when: no
