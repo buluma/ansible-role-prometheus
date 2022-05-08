@@ -12,6 +12,11 @@
   tags:
     - skip_ansible_lint
 
+- name: install jmespath
+  ansible.builtin.pip:
+    name: jmespath
+    state: present
+
 - name: set systemd version fact
   ansible.builtin.set_fact:
     prometheus_systemd_version: "{{ __systemd_version.stdout_lines[0].split(' ')[-1] }}"
