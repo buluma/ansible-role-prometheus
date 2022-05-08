@@ -87,4 +87,4 @@
     - role: buluma.epel
     - role: buluma.buildtools
     - role: buluma.setuptools
-    - role: buluma.python_pip
+    # - role: buluma.python_pip
