@@ -13,8 +13,8 @@
     - skip_ansible_lint
 
 - name: install jmespath
-  ansible.builtin.pip:
-    name: jmespath
+  ansible.builtin.package:
+    name: python3-jmespath
     state: present
 
 - name: set systemd version fact
