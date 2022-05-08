@@ -88,3 +88,4 @@
     - role: buluma.buildtools
     - role: buluma.setuptools
     # - role: buluma.python_pip
+    - role: buluma.pip
