@@ -3,10 +3,7 @@
   hosts: all
   become: yes
   gather_facts: no
-  vars:
-    - python_pip_update: yes
-    - python_pip_executable: pip3
 
   roles:
     - role: buluma.bootstrap
-    - role: buluma.python_pip
+    # - role: buluma.python_pip
