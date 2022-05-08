@@ -7,4 +7,4 @@
   roles:
     - role: buluma.bootstrap
     - role: buluma.setuptools
-    # - role: buluma.python_pip
+    - role: buluma.python_pip
