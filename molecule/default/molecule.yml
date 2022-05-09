@@ -16,6 +16,10 @@ driver:
 platforms:
   - name: "prometheus-${image:-docker-ubuntu2004-ansible}-${tag:-latest}${TOX_ENVNAME}"
     image: "${namespace:-buluma}/${image:-docker-ubuntu2004-ansible}:${tag:-latest}"
+    published_ports:
+      - 9090/tcp
+      - 9093/tcp
+      - 9100/tcp
     command: /sbin/init
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro

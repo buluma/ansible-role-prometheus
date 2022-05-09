@@ -5,6 +5,40 @@
   gather_facts: yes
 
   pre_tasks:
+    - name: redhat | subscription-manager register
+      ansible.builtin.raw: |
+        set -eu
+        subscription-manager register \
+          --username={{ lookup('env', 'REDHAT_USERNAME') }} \
+          --password={{ lookup('env', 'REDHAT_PASSWORD') }} \
+          --auto-attach
+      changed_when: false
+      failed_when: false
+
+    - name: debian | apt-get install python3
+      ansible.builtin.raw: |
+        set -eu
+        apt-get update
+        DEBIAN_FRONTEND=noninteractive apt-get install -y python3
+      changed_when: false
+      failed_when: false
+
+    - name: redhat | yum install python3
+      ansible.builtin.raw: |
+        set -eu
+        yum makecache
+        yum install -y python3
+      changed_when: false
+      failed_when: false
+
+    - name: suse | zypper install python3
+      ansible.builtin.raw: |
+        set -eu
+        zypper -n --gpg-auto-import-keys refresh
+        zypper -n install -y python3
+      changed_when: false
+      failed_when: false
+
     - name: cp -rfT /etc/skel /root
       ansible.builtin.raw: |
         set -eu
@@ -85,8 +119,8 @@
   roles:
     - role: buluma.bootstrap
     - role: buluma.epel
-    - role: buluma.core_dependencies
-    - role: buluma.buildtools
-    - role: buluma.setuptools
-    - role: buluma.pip
-    - role: buluma.python_pip
+    # - role: buluma.core_dependencies
+    # - role: buluma.buildtools
+    # - role: buluma.setuptools
+    # - role: buluma.pip
+    # - role: buluma.python_pip
