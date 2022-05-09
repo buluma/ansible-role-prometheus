@@ -85,7 +85,8 @@
   roles:
     - role: buluma.bootstrap
     - role: buluma.epel
+    - role: buluma.core_dependencies
     - role: buluma.buildtools
-    # - role: buluma.setuptools
-    # - role: buluma.python_pip
+    - role: buluma.setuptools
     - role: buluma.pip
+    - role: buluma.python_pip
