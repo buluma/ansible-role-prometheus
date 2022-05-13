@@ -10,7 +10,7 @@ on:
   schedule:
     - cron: '31 16 * * *'
   workflow_dispatch:
-  push: {branches: ["master", "main", "testing"]}
+  push: {branches: ["master", "main"]}
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
@@ -42,6 +42,8 @@ jobs:
             tag: "bionic"
           - image: "docker-ubuntu-systemd"
             tag: "focal"
+          - image: "docker-ubuntu-systemd"
+            tag: "jammy"
           - image: "debian-systemd"
             tag: "latest"
           - image: "debian-systemd"
