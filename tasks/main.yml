@@ -1,6 +1,6 @@
 ---
 - name: gather variables for each operating system
-  include_vars: "{{ item }}"
+  ansible.builtin.include_vars: "{{ item }}"
   with_first_found:
     - "{{ ansible_distribution | lower }}-{{ ansible_distribution_major_version }}.yml"
     - "{{ ansible_distribution | lower }}.yml"
@@ -10,6 +10,17 @@
     - prometheus_configure
     - prometheus_install
     - prometheus_run
+
+# - name: install setuptools
+#   ansible.builtin.package:
+#     name: python3-setuptools
+#     state: present
+#
+# - name: install setuptools [pip]
+#   ansible.builtin.pip:
+#     name: setuptools
+#     state: present
+#   when: ansible_os_family | lower == "redhat" and ansible_distribution_major_version | lower == "7"
 
 - include: preflight.yml
   tags:
