@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- Bump buluma/molecule-action from 4.0.6 to 4.0.7 [\#15](https://github.com/buluma/ansible-role-prometheus/pull/15) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Develop [\#13](https://github.com/buluma/ansible-role-prometheus/pull/13) ([buluma](https://github.com/buluma))
 
 ## [1.0.8](https://github.com/buluma/ansible-role-prometheus/tree/1.0.8) (2022-04-25)
