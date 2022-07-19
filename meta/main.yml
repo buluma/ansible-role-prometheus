@@ -1,7 +1,6 @@
 ---
 galaxy_info:
-  author: Michael Buluma
-  namespace: buluma
+  author: buluma
   role_name: prometheus
   description: Install and configure Prometheus
   license: Apache-2.0
@@ -17,7 +16,7 @@ galaxy_info:
         - all
     - name: EL
       versions:
-        - 7
+        - "7"
 
   galaxy_tags:
     - system
