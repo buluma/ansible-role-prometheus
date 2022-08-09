@@ -19,3 +19,4 @@ exclude_list:
 
 warn_list:  # or 'skip_list' to silence them completely
   - internal-error  # Unexpected internal error.
+  - unnamed-task
