@@ -57,6 +57,8 @@ jobs:
             tag: "bookworm"
           - image: "enterpriselinux"
             tag: "7"
+          - image: "enterpriselinux"
+            tag: "8"
     steps:
       - name: checkout
         uses: actions/checkout@v3

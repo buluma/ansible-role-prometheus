@@ -11,6 +11,10 @@
     - prometheus_install
     - prometheus_run
 
+- name: Install jmespath python package
+  ansible.builtin.pip:
+    name: jmespath
+
 - include: preflight.yml
   tags:
     - prometheus_configure

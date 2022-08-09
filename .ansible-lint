@@ -17,6 +17,6 @@ exclude_list:
 #   - unnamed-task  # All tasks should be named.
 #   - yaml  # Violations reported by yamllint.
 
-warn_list:  # or 'skip_list' to silence them completely
+skip_list:  # or 'skip_list' to silence them completely
   - internal-error  # Unexpected internal error.
   - unnamed-task
