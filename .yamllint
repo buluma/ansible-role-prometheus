@@ -10,7 +10,6 @@ rules:
     level: error
   line-length: disable
   truthy: disable
-  jinja: disable
 
 ignore: |
   .tox/
