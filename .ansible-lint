@@ -20,3 +20,4 @@ exclude_list:
 skip_list:  # or 'skip_list' to silence them completely
   - internal-error  # Unexpected internal error.
   - unnamed-task
+  - jinja

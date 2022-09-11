@@ -1,11 +1,11 @@
 ---
-- name: create prometheus system group
+- name: Create prometheus system group
   ansible.builtin.group:
     name: prometheus
     system: true
     state: present
 
-- name: create prometheus system user
+- name: Create prometheus system user
   ansible.builtin.user:
     name: prometheus
     system: true
@@ -14,7 +14,7 @@
     createhome: false
     home: "{{ prometheus_db_dir }}"
 
-- name: create prometheus data directory
+- name: Create prometheus data directory
   ansible.builtin.file:
     path: "{{ prometheus_db_dir }}"
     state: directory
@@ -22,7 +22,7 @@
     group: prometheus
     mode: 0755
 
-- name: create prometheus configuration directories
+- name: Create prometheus configuration directories
   ansible.builtin.file:
     path: "{{ item }}"
     state: directory
@@ -35,7 +35,7 @@
     - "{{ prometheus_config_dir }}/file_sd"
 
 - block:
-    - name: download prometheus binary to local folder
+    - name: Download prometheus binary to local folder
       become: false
       ansible.builtin.get_url:
         url: "https://github.com/prometheus/prometheus/releases/download/v{{ prometheus_version }}/prometheus-{{ prometheus_version }}.linux-{{ go_arch }}.tar.gz"
@@ -50,7 +50,7 @@
       delegate_to: localhost
       check_mode: false
 
-    - name: unpack prometheus binaries
+    - name: Unpack prometheus binaries
       become: false
       ansible.builtin.unarchive:
         src: "/tmp/prometheus-{{ prometheus_version }}.linux-{{ go_arch }}.tar.gz"
@@ -59,7 +59,7 @@
       delegate_to: localhost
       check_mode: false
 
-    - name: propagate official prometheus and promtool binaries
+    - name: Propagate official prometheus and promtool binaries
       ansible.builtin.copy:
         src: "/tmp/prometheus-{{ prometheus_version }}.linux-{{ go_arch }}/{{ item }}"
         dest: "{{ _prometheus_binary_install_dir }}/{{ item }}"
@@ -70,9 +70,9 @@
         - prometheus
         - promtool
       notify:
-        - restart prometheus
+        - Restart prometheus
 
-    - name: propagate official console templates
+    - name: Propagate official console templates
       ansible.builtin.copy:
         src: "/tmp/prometheus-{{ prometheus_version }}.linux-{{ go_arch }}/{{ item }}/"
         dest: "{{ prometheus_config_dir }}/{{ item }}/"
@@ -83,12 +83,12 @@
         - console_libraries
         - consoles
       notify:
-        - restart prometheus
+        - Restart prometheus
   when:
     - prometheus_binary_local_dir | length == 0
     - not prometheus_skip_install
 
-- name: propagate locally distributed prometheus and promtool binaries
+- name: Propagate locally distributed prometheus and promtool binaries
   ansible.builtin.copy:
     src: "{{ prometheus_binary_local_dir }}/{{ item }}"
     dest: "{{ _prometheus_binary_install_dir }}/{{ item }}"
@@ -102,9 +102,9 @@
     - prometheus_binary_local_dir | length > 0
     - not prometheus_skip_install
   notify:
-    - restart prometheus
+    - Restart prometheus
 
-- name: create systemd service unit
+- name: Create systemd service unit
   ansible.builtin.template:
     src: prometheus.service.j2
     dest: /etc/systemd/system/prometheus.service
@@ -112,9 +112,9 @@
     group: root
     mode: 0644
   notify:
-    - restart prometheus
+    - Restart prometheus
 
-- name: install SELinux dependencies
+- name: Install SELinux dependencies
   ansible.builtin.package:
     name: "{{ item }}"
     state: present
@@ -127,7 +127,7 @@
     - ansible_version.full is version('2.4', '>=')
     - ansible_selinux.status == "enabled"
 
-- name: allow prometheus to bind to port in SELinux
+- name: Allow prometheus to bind to port in SELinux
   community.general.seport:
     ports: "{{ prometheus_web_listen_address.split(':')[1] }}"
     proto: tcp

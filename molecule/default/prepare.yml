@@ -5,7 +5,7 @@
   gather_facts: yes
 
   pre_tasks:
-    - name: redhat | subscription-manager register
+    - name: Redhat | subscription-manager register
       ansible.builtin.raw: |
         set -eu
         subscription-manager register \
@@ -15,7 +15,7 @@
       changed_when: false
       failed_when: false
 
-    - name: debian | apt-get install python3
+    - name: Debian | apt-get install python3
       ansible.builtin.raw: |
         set -eu
         apt-get update
@@ -23,7 +23,7 @@
       changed_when: false
       failed_when: false
 
-    - name: redhat | yum install python3
+    - name: Redhat | yum install python3
       ansible.builtin.raw: |
         set -eu
         yum makecache
@@ -31,7 +31,7 @@
       changed_when: false
       failed_when: false
 
-    - name: suse | zypper install python3
+    - name: Suse | zypper install python3
       ansible.builtin.raw: |
         set -eu
         zypper -n --gpg-auto-import-keys refresh
@@ -39,14 +39,14 @@
       changed_when: false
       failed_when: false
 
-    - name: cp -rfT /etc/skel /root
+    - name: Cp -rfT /etc/skel /root
       ansible.builtin.raw: |
         set -eu
         cp -rfT /etc/skel /root
       changed_when: false
       failed_when: false
 
-    - name: setenforce 0
+    - name: Setenforce 0
       ansible.builtin.raw: |
         set -eu
         setenforce 0
@@ -54,7 +54,7 @@
       changed_when: false
       failed_when: false
 
-    - name: systemctl stop firewalld.service
+    - name: Systemctl stop firewalld.service
       ansible.builtin.raw: |
         set -eu
         systemctl stop firewalld.service
@@ -62,7 +62,7 @@
       changed_when: false
       failed_when: false
 
-    - name: systemctl stop ufw.service
+    - name: Systemctl stop ufw.service
       ansible.builtin.raw: |
         set -eu
         systemctl stop ufw.service
@@ -70,7 +70,7 @@
       changed_when: false
       failed_when: false
 
-    - name: debian | apt-get install *.deb
+    - name: Debian | apt-get install *.deb
       ansible.builtin.raw: |
         set -eu
         DEBIAN_FRONTEND=noninteractive apt-get install -y bzip2 ca-certificates curl gcc gnupg gzip hostname iproute2 passwd procps python3 python3-apt python3-jmespath python3-lxml python3-pip python3-setuptools python3-jmespath python3-venv python3-virtualenv python3-wheel rsync sudo tar unzip util-linux xz-utils zip
@@ -78,7 +78,7 @@
       changed_when: false
       failed_when: false
 
-    - name: fedora | yum install *.rpm
+    - name: Fedora | yum install *.rpm
       ansible.builtin.raw: |
         set -eu
         yum install -y bzip2 ca-certificates curl gcc gnupg2 gzip hostname iproute procps-ng python3 python3-dnf-plugin-versionlock python3-jmespath python3-libselinux python3-lxml python3-pip python3-setuptools python3-jmespath python3-virtualenv python3-wheel rsync shadow-utils sudo tar unzip util-linux xz yum-utils zip
@@ -86,7 +86,7 @@
       changed_when: false
       failed_when: false
 
-    - name: redhat-9 | yum install *.rpm
+    - name: Redhat-9 | yum install *.rpm
       ansible.builtin.raw: |
         set -eu
         yum-config-manager --enable crb || echo $?
@@ -97,7 +97,7 @@
       changed_when: false
       failed_when: false
 
-    - name: redhat-8 | yum install *.rpm
+    - name: Redhat-8 | yum install *.rpm
       ansible.builtin.raw: |
         set -eu
         yum install -y http://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
@@ -106,7 +106,7 @@
       changed_when: false
       failed_when: false
 
-    - name: redhat-7 | yum install *.rpm
+    - name: Redhat-7 | yum install *.rpm
       ansible.builtin.raw: |
         set -eu
         subscription-manager repos --enable=rhel-7-server-optional-rpms || echo $?
@@ -129,4 +129,4 @@
     - role: buluma.pip
     - role: buluma.python_pip
       python_pip_modules:
-        name: jmespath
+        - name: jmespath
