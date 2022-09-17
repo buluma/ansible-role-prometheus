@@ -10,7 +10,7 @@
   when:
     - prometheus_alert_rules != []
   notify:
-    - reload prometheus
+    - Reload prometheus
 
 - name: Copy custom alerting rule files
   ansible.builtin.copy:
@@ -22,7 +22,7 @@
     validate: "{{ _prometheus_binary_install_dir }}/promtool check rules %s"
   with_fileglob: "{{ prometheus_alert_rules_files }}"
   notify:
-    - reload prometheus
+    - Reload prometheus
 
 - name: Configure prometheus
   ansible.builtin.template:
@@ -34,7 +34,7 @@
     mode: 0640
     validate: "{{ _prometheus_binary_install_dir }}/promtool check config %s"
   notify:
-    - reload prometheus
+    - Reload prometheus
 
 - name: Configure Prometheus web
   ansible.builtin.copy:
@@ -56,7 +56,7 @@
     group: prometheus
     mode: 0640
   notify:
-    - reload prometheus
+    - Reload prometheus
   with_dict: "{{ prometheus_targets }}"
   when: prometheus_targets != {}
 

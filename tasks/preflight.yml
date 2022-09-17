@@ -5,7 +5,7 @@
     msg: "This module only works with systemd"
 
 - name: Get systemd version
-  command: systemctl --version
+  ansible.builtin.command: systemctl --version
   changed_when: false
   check_mode: false
   register: __systemd_version
