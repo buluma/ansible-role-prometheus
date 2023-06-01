@@ -5,4 +5,4 @@
 repository:
   description: Install and configure Prometheus
   homepage: https://buluma.github.io/
-  topics: system, monitoring, prometheus, ansible, molecule, tox, playbook, hacktoberfest
+  topics: system, monitoring, prometheus, ansible, molecule, tox, playbook

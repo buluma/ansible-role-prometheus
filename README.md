@@ -4,11 +4,12 @@ Install and configure Prometheus
 
 |GitHub|GitLab|Quality|Downloads|Version|Issues|Pull Requests|
 |------|------|-------|---------|-------|------|-------------|
-|[![github](https://github.com/buluma/ansible-role-prometheus/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-prometheus/actions)|[![gitlab](https://gitlab.com/buluma/ansible-role-prometheus/badges/master/pipeline.svg)](https://gitlab.com/buluma/ansible-role-prometheus)|[![quality](https://img.shields.io/ansible/quality/57842)](https://galaxy.ansible.com/buluma/prometheus)|[![downloads](https://img.shields.io/ansible/role/d/57842)](https://galaxy.ansible.com/buluma/prometheus)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-prometheus.svg)](https://github.com/buluma/ansible-role-prometheus/releases/)|[![Issues](https://img.shields.io/github/issues/buluma/ansible-role-prometheus.svg)](https://github.com/buluma/ansible-role-prometheus/issues/)|[![PullRequests](https://img.shields.io/github/issues-pr-closed-raw/buluma/ansible-role-prometheus.svg)](https://github.com/buluma/ansible-role-prometheus/pulls/)|
+|[![github](https://github.com/buluma/ansible-role-prometheus/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-prometheus/actions)|[![gitlab](https://gitlab.com/shadowwalker/ansible-role-prometheus/badges/master/pipeline.svg)](https://gitlab.com/shadowwalker/ansible-role-prometheus)|[![quality](https://img.shields.io/ansible/quality/57842)](https://galaxy.ansible.com/buluma/prometheus)|[![downloads](https://img.shields.io/ansible/role/d/57842)](https://galaxy.ansible.com/buluma/prometheus)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-prometheus.svg)](https://github.com/buluma/ansible-role-prometheus/releases/)|[![Issues](https://img.shields.io/github/issues/buluma/ansible-role-prometheus.svg)](https://github.com/buluma/ansible-role-prometheus/issues/)|[![PullRequests](https://img.shields.io/github/issues-pr-closed-raw/buluma/ansible-role-prometheus.svg)](https://github.com/buluma/ansible-role-prometheus/pulls/)|
 
 ## [Example Playbook](#example-playbook)
 
-This example is taken from `molecule/default/converge.yml` and is tested on each push, pull request and release.
+This example is taken from [`molecule/default/converge.yml`](https://github.com/buluma/ansible-role-prometheus/blob/master/molecule/default/converge.yml) and is tested on each push, pull request and release.
+
 ```yaml
 ---
 - name: Converge
@@ -20,22 +21,149 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
     - role: buluma.prometheus
 ```
 
-The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
+The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/buluma/ansible-role-prometheus/blob/master/molecule/default/prepare.yml):
+
 ```yaml
 ---
 - name: Prepare
   hosts: all
   become: yes
-  gather_facts: no
+  gather_facts: yes
+
+  pre_tasks:
+    - name: Redhat | subscription-manager register
+      ansible.builtin.raw: |
+        set -eu
+        subscription-manager register \
+          --username={{ lookup('env', 'REDHAT_USERNAME') }} \
+          --password={{ lookup('env', 'REDHAT_PASSWORD') }} \
+          --auto-attach
+      changed_when: false
+      failed_when: false
+
+    - name: Debian | apt-get install python3
+      ansible.builtin.raw: |
+        set -eu
+        apt-get update
+        DEBIAN_FRONTEND=noninteractive apt-get install -y python3
+      changed_when: false
+      failed_when: false
+
+    - name: Redhat | yum install python3
+      ansible.builtin.raw: |
+        set -eu
+        yum makecache
+        yum install -y python3
+      changed_when: false
+      failed_when: false
+
+    - name: Suse | zypper install python3
+      ansible.builtin.raw: |
+        set -eu
+        zypper -n --gpg-auto-import-keys refresh
+        zypper -n install -y python3
+      changed_when: false
+      failed_when: false
+
+    - name: Cp -rfT /etc/skel /root
+      ansible.builtin.raw: |
+        set -eu
+        cp -rfT /etc/skel /root
+      changed_when: false
+      failed_when: false
+
+    - name: Setenforce 0
+      ansible.builtin.raw: |
+        set -eu
+        setenforce 0
+        sed -i 's/^SELINUX=.*$/SELINUX=permissive/g' /etc/selinux/config
+      changed_when: false
+      failed_when: false
+
+    - name: Systemctl stop firewalld.service
+      ansible.builtin.raw: |
+        set -eu
+        systemctl stop firewalld.service
+        systemctl disable firewalld.service
+      changed_when: false
+      failed_when: false
+
+    - name: Systemctl stop ufw.service
+      ansible.builtin.raw: |
+        set -eu
+        systemctl stop ufw.service
+        systemctl disable ufw.service
+      changed_when: false
+      failed_when: false
+
+    - name: Debian | apt-get install *.deb
+      ansible.builtin.raw: |
+        set -eu
+        DEBIAN_FRONTEND=noninteractive apt-get install -y bzip2 ca-certificates curl gcc gnupg gzip hostname iproute2 passwd procps python3 python3-apt python3-jmespath python3-lxml python3-pip python3-setuptools python3-jmespath python3-venv python3-virtualenv python3-wheel rsync sudo tar unzip util-linux xz-utils zip
+      when: ansible_os_family | lower == "debian"
+      changed_when: false
+      failed_when: false
+
+    - name: Fedora | yum install *.rpm
+      ansible.builtin.raw: |
+        set -eu
+        yum install -y bzip2 ca-certificates curl gcc gnupg2 gzip hostname iproute procps-ng python3 python3-dnf-plugin-versionlock python3-jmespath python3-libselinux python3-lxml python3-pip python3-setuptools python3-jmespath python3-virtualenv python3-wheel rsync shadow-utils sudo tar unzip util-linux xz yum-utils zip
+      when: ansible_distribution | lower == "fedora"
+      changed_when: false
+      failed_when: false
+
+    - name: Redhat-9 | yum install *.rpm
+      ansible.builtin.raw: |
+        set -eu
+        yum-config-manager --enable crb || echo $?
+        yum-config-manager --enable codeready-builder-beta-for-rhel-9-x86_64-rpms || echo $?
+        yum install -y http://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+        yum install -y bzip2 ca-certificates curl gcc gnupg2 gzip hostname iproute procps-ng python3 python3-dnf-plugin-versionlock python3-jmespath python3-libselinux python3-lxml python3-pip python3-setuptools python3-jmespath python3-virtualenv python3-wheel rsync shadow-utils sudo tar unzip util-linux xz yum-utils zip
+      when: ansible_os_family | lower == "redhat" and ansible_distribution_major_version | lower == "9"
+      changed_when: false
+      failed_when: false
+
+    - name: Redhat-8 | yum install *.rpm
+      ansible.builtin.raw: |
+        set -eu
+        yum install -y http://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+        yum install -y bzip2 ca-certificates curl gcc gnupg2 gzip hostname iproute procps-ng python3 python3-dnf-plugin-versionlock python3-jmespath python3-libselinux python3-lxml python3-pip python3-setuptools python3-jmespath python3-virtualenv python3-wheel rsync shadow-utils sudo tar unzip util-linux xz yum-utils zip
+      when: ansible_os_family | lower == "redhat" and ansible_distribution_major_version | lower == "8"
+      changed_when: false
+      failed_when: false
+
+    - name: Redhat-7 | yum install *.rpm
+      ansible.builtin.raw: |
+        set -eu
+        subscription-manager repos --enable=rhel-7-server-optional-rpms || echo $?
+        yum install -y http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+        yum install -y bzip2 ca-certificates curl gcc gnupg2 gzip hostname iproute procps-ng python3 python3-jmespath python3-libselinux python3-lxml python3-pip python3-setuptools python3-jmespath python3-virtualenv python3-wheel rsync shadow-utils sudo tar unzip util-linux xz yum-plugin-versionlock yum-utils zip
+      when: ansible_os_family | lower == "redhat" and ansible_distribution_major_version | lower == "7"
+      changed_when: false
+      failed_when: false
+
+    - name: Install jmespath python package
+      ansible.builtin.pip:
+        name: jmespath
 
   roles:
     - role: buluma.bootstrap
+    - role: buluma.epel
+    # - role: buluma.core_dependencies
+    # - role: buluma.buildtools
+    # - role: buluma.setuptools
+    - role: buluma.pip
+    - role: buluma.python_pip
+      python_pip_modules:
+        - name: jmespath
 ```
 
+Also see a [full explanation and example](https://buluma.github.io/how-to-use-these-roles.html) on how to use these roles.
 
 ## [Role Variables](#role-variables)
 
-The default values for the variables are set in `defaults/main.yml`:
+The default values for the variables are set in [`defaults/main.yml`](https://github.com/buluma/ansible-role-prometheus/blob/master/defaults/main.yml):
+
 ```yaml
 ---
 prometheus_version: 2.27.0
@@ -260,15 +388,18 @@ prometheus_alert_rules:
 
 ## [Requirements](#requirements)
 
-- pip packages listed in [requirements.txt](https://github.com/buluma/ansible-role-prometheus/blob/main/requirements.txt).
+- pip packages listed in [requirements.txt](https://github.com/buluma/ansible-role-prometheus/blob/master/requirements.txt).
 
-## [Status of used roles](#status-of-requirements)
+## [State of used roles](#state-of-used-roles)
 
 The following roles are used to prepare a system. You can prepare your system in another way.
 
 | Requirement | GitHub | GitLab |
 |-------------|--------|--------|
-|[buluma.bootstrap](https://galaxy.ansible.com/buluma/bootstrap)|[![Build Status GitHub](https://github.com/buluma/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-bootstrap/actions)|[![Build Status GitLab ](https://gitlab.com/buluma/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/buluma/ansible-role-bootstrap)|
+|[buluma.bootstrap](https://galaxy.ansible.com/buluma/bootstrap)|[![Build Status GitHub](https://github.com/buluma/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-bootstrap/actions)|[![Build Status GitLab](https://gitlab.com/shadowwalker/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/shadowwalker/ansible-role-bootstrap)|
+|[buluma.pip](https://galaxy.ansible.com/buluma/pip)|[![Build Status GitHub](https://github.com/buluma/ansible-role-pip/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-pip/actions)|[![Build Status GitLab](https://gitlab.com/shadowwalker/ansible-role-pip/badges/master/pipeline.svg)](https://gitlab.com/shadowwalker/ansible-role-pip)|
+|[buluma.epel](https://galaxy.ansible.com/buluma/epel)|[![Build Status GitHub](https://github.com/buluma/ansible-role-epel/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-epel/actions)|[![Build Status GitLab](https://gitlab.com/shadowwalker/ansible-role-epel/badges/master/pipeline.svg)](https://gitlab.com/shadowwalker/ansible-role-epel)|
+|[buluma.python_pip](https://galaxy.ansible.com/buluma/python_pip)|[![Build Status GitHub](https://github.com/buluma/ansible-role-python_pip/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-python_pip/actions)|[![Build Status GitLab](https://gitlab.com/shadowwalker/ansible-role-python_pip/badges/master/pipeline.svg)](https://gitlab.com/shadowwalker/ansible-role-python_pip)|
 
 ## [Context](#context)
 
@@ -284,17 +415,16 @@ This role has been tested on these [container images](https://hub.docker.com/u/b
 
 |container|tags|
 |---------|----|
-|ubuntu|all|
-|debian|all|
-|el|7|
+|[Ubuntu](https://hub.docker.com/repository/docker/buluma/ubuntu/general)|all|
+|[Kali](https://hub.docker.com/repository/docker/buluma/kali/general)|all|
+|[Debian](https://hub.docker.com/repository/docker/buluma/debian/general)|all|
+|[EL](https://hub.docker.com/repository/docker/buluma/enterpriselinux/general)|7, 8|
 
-The minimum version of Ansible required is 2.10, tests have been done to:
+The minimum version of Ansible required is 2.12, tests have been done to:
 
 - The previous version.
 - The current version.
 - The development version.
-
-
 
 If you find issues, please register them in [GitHub](https://github.com/buluma/ansible-role-prometheus/issues)
 
@@ -304,8 +434,14 @@ If you find issues, please register them in [GitHub](https://github.com/buluma/a
 
 ## [License](#license)
 
-Apache-2.0
+[Apache-2.0](https://github.com/buluma/ansible-role-prometheus/blob/master/LICENSE).
 
 ## [Author Information](#author-information)
 
 [buluma](https://buluma.github.io/)
+
+Please consider [sponsoring me](https://github.com/sponsors/buluma).
+
+### [Special Thanks](#special-thanks)
+
+Template inspired by [Robert de Bock](https://github.com/robertdebock)

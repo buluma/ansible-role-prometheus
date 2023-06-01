@@ -5,10 +5,13 @@ galaxy_info:
   description: Install and configure Prometheus
   license: Apache-2.0
   company: ShadowNet
-  min_ansible_version: "2.10"
+  min_ansible_version: "2.12"
 
   platforms:
     - name: Ubuntu
+      versions:
+        - all
+    - name: Kali
       versions:
         - all
     - name: Debian

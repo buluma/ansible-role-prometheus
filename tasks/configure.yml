@@ -1,5 +1,5 @@
 ---
-- name: Alerting rules file
+- name: configure | Alerting rules file
   ansible.builtin.template:
     src: "alert.rules.j2"
     dest: "{{ prometheus_config_dir }}/rules/ansible_managed.rules"
@@ -12,7 +12,7 @@
   notify:
     - Reload prometheus
 
-- name: Copy custom alerting rule files
+- name: configure | Copy custom alerting rule files
   ansible.builtin.copy:
     src: "{{ item }}"
     dest: "{{ prometheus_config_dir }}/rules/"
@@ -24,7 +24,7 @@
   notify:
     - Reload prometheus
 
-- name: Configure prometheus
+- name: configure | Configure prometheus
   ansible.builtin.template:
     src: "{{ prometheus_config_file }}"
     dest: "{{ prometheus_config_dir }}/prometheus.yml"
@@ -36,7 +36,7 @@
   notify:
     - Reload prometheus
 
-- name: Configure Prometheus web
+- name: configure | Configure Prometheus web
   ansible.builtin.copy:
     content: "{{ prometheus_web_config | to_nice_yaml(indent=2,sort_keys=False) }}"
     dest: "{{ prometheus_config_dir }}/web.yml"
@@ -45,7 +45,7 @@
     group: prometheus
     mode: 0640
 
-- name: Configure prometheus static targets
+- name: configure | Configure prometheus static targets
   ansible.builtin.copy:
     content: |
       #jinja2: lstrip_blocks: True
@@ -60,7 +60,7 @@
   with_dict: "{{ prometheus_targets }}"
   when: prometheus_targets != {}
 
-- name: Copy prometheus custom static targets
+- name: configure | Copy prometheus custom static targets
   ansible.builtin.copy:
     src: "{{ item }}"
     dest: "{{ prometheus_config_dir }}/file_sd/"
