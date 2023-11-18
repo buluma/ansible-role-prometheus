@@ -1,5 +1,14 @@
 # Changelog
 
+## [Unreleased](https://github.com/buluma/ansible-role-prometheus/tree/HEAD)
+
+[Full Changelog](https://github.com/buluma/ansible-role-prometheus/compare/1.0.9...HEAD)
+
+**Closed issues:**
+
+- Update buluma/todo-to-issue-action@v1.0.1 @buluma [\#24](https://github.com/buluma/ansible-role-prometheus/issues/24)
+- Update action [\#23](https://github.com/buluma/ansible-role-prometheus/issues/23)
+
 ## [1.0.9](https://github.com/buluma/ansible-role-prometheus/tree/1.0.9) (2022-07-19)
 
 [Full Changelog](https://github.com/buluma/ansible-role-prometheus/compare/1.0.8...1.0.9)
