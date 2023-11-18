@@ -1,4 +1,4 @@
-# [prometheus](#prometheus)
+# [Ansible role prometheus](#prometheus)
 
 Install and configure Prometheus
 
