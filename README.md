@@ -1,10 +1,10 @@
-# [Ansible role prometheus](#prometheus)
+# Ansible role [prometheus](https://galaxy.ansible.com/ui/standalone/roles/buluma/prometheus/documentation)
 
 Install and configure Prometheus
 
-|GitHub|Version|Issues|Pull Requests|
-|------|-------|------|-------------|
-|[![github](https://github.com/buluma/ansible-role-prometheus/actions/workflows/molecule.yml/badge.svg)](https://github.com/buluma/ansible-role-prometheus/actions/workflows/molecule.yml)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-prometheus.svg)](https://github.com/buluma/ansible-role-prometheus/releases/)|[![Issues](https://img.shields.io/github/issues/buluma/ansible-role-prometheus.svg)](https://github.com/buluma/ansible-role-prometheus/issues/)|[![PullRequests](https://img.shields.io/github/issues-pr-closed-raw/buluma/ansible-role-prometheus.svg)](https://github.com/buluma/ansible-role-prometheus/pulls/)|
+|GitHub|Version|Issues|Pull Requests|Downloads|
+|------|-------|------|-------------|---------|
+|[![github](https://github.com/buluma/ansible-role-prometheus/actions/workflows/molecule.yml/badge.svg)](https://github.com/buluma/ansible-role-prometheus/actions/workflows/molecule.yml)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-prometheus.svg)](https://github.com/buluma/ansible-role-prometheus/releases/)|[![Issues](https://img.shields.io/github/issues/buluma/ansible-role-prometheus.svg)](https://github.com/buluma/ansible-role-prometheus/issues/)|[![PullRequests](https://img.shields.io/github/issues-pr-closed-raw/buluma/ansible-role-prometheus.svg)](https://github.com/buluma/ansible-role-prometheus/pulls/)|[![Ansible Role](https://img.shields.io/ansible/role/d/buluma/prometheus)](https://galaxy.ansible.com/ui/standalone/roles/buluma/prometheus/documentation)|
 
 ## [Example Playbook](#example-playbook)
 
