@@ -6,6 +6,7 @@
 
 **Closed issues:**
 
+- Update buluma/todo-to-issue-action@v1.0.1 @buluma [\#30](https://github.com/buluma/ansible-role-prometheus/issues/30)
 - Update buluma/todo-to-issue-action@v1.0.1 @buluma [\#24](https://github.com/buluma/ansible-role-prometheus/issues/24)
 - Update action [\#23](https://github.com/buluma/ansible-role-prometheus/issues/23)
 
