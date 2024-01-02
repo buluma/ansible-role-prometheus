@@ -1,0 +1,15 @@
+digraph PhiloDilemma {
+  label = "Michael Buluma" ;
+  overlap=false
+  {
+    "prometheus" [fillcolor=yellow style=filled penwidth=3]
+    "buluma.bootstrap" [fillcolor=green style=filled]
+    "buluma.pip" [fillcolor=green style=filled]
+    "buluma.epel" [fillcolor=green style=filled]
+    "buluma.python_pip" [fillcolor=green style=filled]
+  }
+  "prometheus" -> "buluma.bootstrap"
+  "prometheus" -> "buluma.pip"
+  "prometheus" -> "buluma.epel"
+  "prometheus" -> "buluma.python_pip"
+}
