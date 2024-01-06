@@ -33,7 +33,7 @@
 
 - name: preflight | Set prometheus external metrics path
   ansible.builtin.set_fact:
-    prometheus_metrics_path: "/{{ ( prometheus_web_external_url + '/metrics' ) | regex_replace('^(.*://)?(.*?)/') }}"
+    prometheus_metrics_path: "/{{ (prometheus_web_external_url + '/metrics') | regex_replace('^(.*://)?(.*?)/') }}"
 
 - name: preflight | Fail when prometheus_config_flags_extra duplicates parameters set by other variables
   ansible.builtin.fail:
@@ -93,7 +93,7 @@
       until: _latest_release.status == 200
       retries: 5
 
-    - name: "Set prometheus version to {{ _latest_release.json.tag_name[1:] }}"
+    - name: preflight | "Set prometheus version to {{ _latest_release.json.tag_name[1:] }}"
       ansible.builtin.set_fact:
         prometheus_version: "{{ _latest_release.json.tag_name[1:] }}"
 
@@ -101,16 +101,16 @@
   when:
     - prometheus_binary_local_dir | length == 0
     - not prometheus_skip_install
+  delegate_to: localhost
   block:
     - name: preflight | Set checksum list
       ansible.builtin.set_fact:
         __prometheus_checksums: "{{ lookup('url', 'https://github.com/prometheus/prometheus/releases/download/v' + prometheus_version + '/sha256sums.txt', wantlist=True) | list }}"
       run_once: true
 
-    - name: "preflight | Get checksum for {{ go_arch }} architecture"
+    - name: preflight | "Get checksum for architecture {{ go_arch }}"
       ansible.builtin.set_fact:
         __prometheus_checksum: "{{ item.split(' ')[0] }}"
       with_items: "{{ __prometheus_checksums }}"
       when:
         - "('linux-' + go_arch + '.tar.gz') in item"
-  delegate_to: localhost
