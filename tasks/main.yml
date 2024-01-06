@@ -15,18 +15,24 @@
 #   ansible.builtin.pip:
 #     name: jmespath
 
-- include: preflight.yml
+- name: Run preflight
+  ansible.builtin.import_tasks:
+    file: preflight.yml
   tags:
     - prometheus_configure
     - prometheus_install
     - prometheus_run
 
-- include: install.yml
+- name: Run install
+  ansible.builtin.import_tasks:
+    file: install.yml
   become: true
   tags:
     - prometheus_install
 
-- include: configure.yml
+- name: Run configure
+  ansible.builtin.import_tasks:
+    file: configure.yml
   become: true
   tags:
     - prometheus_configure

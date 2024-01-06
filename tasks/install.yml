@@ -34,7 +34,11 @@
     - "{{ prometheus_config_dir }}/rules"
     - "{{ prometheus_config_dir }}/file_sd"
 
-- block:
+- name: install | Download prometheus binary to local folder
+  when:
+    - prometheus_binary_local_dir | length == 0
+    - not prometheus_skip_install
+  block:
     - name: install | Download prometheus binary to local folder
       become: false
       ansible.builtin.get_url:
@@ -84,9 +88,6 @@
         - consoles
       notify:
         - Restart prometheus
-  when:
-    - prometheus_binary_local_dir | length == 0
-    - not prometheus_skip_install
 
 - name: install | Propagate locally distributed prometheus and promtool binaries
   ansible.builtin.copy:
