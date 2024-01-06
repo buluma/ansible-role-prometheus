@@ -14,3 +14,8 @@
     - role: buluma.python_pip
       python_pip_modules:
         - name: jmespath
+
+  tasks:
+    - name: Install jmespath python package
+      ansible.builtin.package:
+        name: python3-jmespath

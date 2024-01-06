@@ -11,10 +11,6 @@
     - prometheus_install
     - prometheus_run
 
-- name: Install jmespath python package
-  ansible.builtin.package:
-    name: python3-jmespath
-
 - name: Run preflight
   ansible.builtin.import_tasks:
     file: preflight.yml
