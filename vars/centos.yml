@@ -2,4 +2,5 @@
 prometheus_selinux_packages:
   - libselinux-python
   - policycoreutils-python
+  - python3-jmespath
   - jmespath
