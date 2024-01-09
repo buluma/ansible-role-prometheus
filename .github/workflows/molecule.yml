@@ -42,8 +42,6 @@ jobs:
       - name: ansible-lint
         uses: ansible-community/ansible-lint-action@main
   test:
-    needs:
-      - lint
     runs-on: ubuntu-20.04
     strategy:
       fail-fast: false
